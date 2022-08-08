@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+
 // TODO: Create an array of questions for user input
 const questions = [
   {
@@ -87,7 +88,50 @@ const questions = [
       }
     },
   },
+  {
+    type: "list",
+    name: "inputlicense",
+    message:
+      "Which license is your project under?",
+      choices: ["Open Source, Public Domain, Apache 2.0, MIT, General Public License, Proprietary"],
+  },
 ];
+
+inquirer.prompt(questions).then((data) => {
+  const {projectTitle, description, inputLink, inputInstall, inputUsage, inputCredits} = data;
+})
+console.log(title);
+
+const readme = `
+# ${title}
+
+##Description
+${description}
+
+## Table of Contents
+
+- [Description](#description)
+- [License](#license)
+- [Github](#github)
+
+##Deployed Link
+${inputLink}
+
+##Installation
+${inputInstall}
+
+##Usage
+${inputUsage}
+
+
+## License
+${license}
+
+##Credits
+${inputCredits}
+
+`;
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
