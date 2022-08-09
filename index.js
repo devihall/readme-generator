@@ -63,7 +63,7 @@ const questions = [
     message:
       "Enter instructions and examples of where your project can be used.",
     validate: (usageInput) => {
-      if (usagelInput) {
+      if (usageInput) {
         return true;
       } else {
         console.log(
@@ -94,17 +94,22 @@ const questions = [
     name: "inputlicense",
     message:
       "Which license is your project under?",
-      choices: ["Open Source, Public Domain, Apache 2.0, MIT, General Public License, Proprietary"],
+      choices: ["Open Source", "Public Domain", "Apache 2.0", "MIT", "General Public License", "Proprietary"],
   },
 ];
 
 inquirer.prompt(questions).then((data) => {
-  const {projectTitle, description, inputLink, inputInstall, inputUsage, inputCredits} = data;
-})
-console.log(title);
-
-const readme = `
-# ${title}
+  const {
+    projectTitle,
+    description,
+    inputLink,
+    inputInstall,
+    inputUsage,
+    inputCredits,
+    inputlicense
+  } = data;
+  const readme = `
+# ${projectTitle}
 
 ##Description
 ${description}
@@ -124,27 +129,23 @@ ${inputInstall}
 ##Usage
 ${inputUsage}
 
-
 ## License
-${license}
+${inputlicense}
 
 ##Credits
 ${inputCredits}
 
 `;
 
-fs.appendFile("README.md",readme, (error) => {
+
+fs.appendFile("README.md", readme, (error) => {
   if (error) {
     console.log(error);
   } else {
-    console.log("success!")
+    console.log("success!");
   }
-})
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+});
+});
 
-// TODO: Create a function to initialize app
-function init() {}
 
-// Function call to initialize app
-init();
+
